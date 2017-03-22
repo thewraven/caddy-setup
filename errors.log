@@ -1,0 +1,2 @@
+22/Mar/2017:09:08:15 -0600 [ERROR 502 ] dial tcp [::1]:8080: getsockopt: connection refused
+22/Mar/2017:09:08:19 -0600 [ERROR 502 /] dial tcp [::1]:8080: getsockopt: connection refused

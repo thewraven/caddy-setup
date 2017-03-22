@@ -1,0 +1,47 @@
+minio.localhost {
+	# Autenticación con lista de usuarios
+	#prometheus
+	prometheus http://localhost:9080
+
+	proxy / http://localhost:9090 {
+		transparent
+	}
+	tls server.crt server.key
+	errors {
+		log	errors.log
+		404	404.html
+		500	500.html
+	}
+	#Subred e IP especifica
+	ipfilter / {
+		rule allow
+		#IP especifica
+		#ip 10.0.0.3
+	 	#Subred
+	  ip 10.0.0.0/25
+		blockpage 404.html
+	}
+	#Permite al host conectarse
+	ipfilter / {
+		rule allow
+		ip ::1
+	}
+}
+
+docs.localhost {
+	basicauth / juan	juan
+	basicauth / noe	noe
+	basicauth / gerardo	gerardo
+	proxy / localhost:1313 {
+		transparent
+		websocket
+	}
+	tls server.crt server.key
+}
+
+gogs.localhost {
+	proxy / localhost:3000 {
+		transparent
+	}
+	tls server.crt server.key
+}
